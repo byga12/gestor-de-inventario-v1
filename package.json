@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "devDependencies": {
+    "turbo": "^2.5.8"
+  },
+  "packageManager": "npm@11.6.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
