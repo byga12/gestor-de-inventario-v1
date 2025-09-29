@@ -11,34 +11,35 @@ const PROTECTED_ROUTES = [
 const LOGIN_ROUTE = '/login';
 
 export async function middleware(request: NextRequest) {
-  // if (PROTECTED_ROUTES.includes(request.nextUrl.pathname)) {
-  const token = request.cookies.get('auth_token')?.value;
+  const path = request.nextUrl.pathname;
+  const isProtectedRoute = PROTECTED_ROUTES.includes(path);
+  if (!isProtectedRoute) {
+    return NextResponse.next();
+  } else {
+    const token = request.cookies.get('auth_token')?.value;
+    if (token) {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const req = await fetch('http://localhost:3000/revalidate', {
+        method: 'POST',
+        headers,
+      });
+      if (req.ok) {
+        const res = await req.json();
+        if (res.isValid) {
+          return NextResponse.next();
+        }
+      }
+    }
+  }
   const loginUrl = new URL(LOGIN_ROUTE, request.url);
-  if (!token) {
-    return NextResponse.redirect(loginUrl);
-  }
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-  const req = await fetch('http://localhost:3000/revalidate', {
-    method: 'POST',
-    headers,
-  });
-  const res = await req.json();
-  console.log(res);
-
-  if (!req.ok || res.isValid == false) {
-    console.log('redirigiendo a login');
-
-    return NextResponse.redirect(loginUrl);
-  }
-  // }
-  console.log('todo bien');
-
-  return NextResponse.next();
+  console.log('redirigiendo a login');
+  return NextResponse.redirect(loginUrl);
 }
 
-export const config: MiddlewareConfig = {
-  matcher: '/',
-};
+// export const config: MiddlewareConfig = {
+//   matcher: '/',
+// };
+// Cómo funciona matcher? si no lo pongo, se ve que el middleware aplica a todo.
 // TODO: emprolijar respuestas y ver si están bien las rutas

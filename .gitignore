@@ -37,3 +37,7 @@ yarn-error.log*
 .DS_Store
 *.pem
 .vscode
+# *.bru
+/apps/server/bruno_endpoints_server
+
+/apps/web/bruno_endpoints_web
