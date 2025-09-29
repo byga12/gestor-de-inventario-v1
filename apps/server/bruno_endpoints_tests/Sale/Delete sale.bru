@@ -1,0 +1,19 @@
+meta {
+  name: Delete sale
+  type: http
+  seq: 2
+}
+
+delete {
+  url: http://localhost:3000/sale/60d5b4ae-6463-4bb9-beed-09c94ad6e570
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+settings {
+  encodeUrl: true
+}

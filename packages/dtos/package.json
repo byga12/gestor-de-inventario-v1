@@ -1,0 +1,6 @@
+{
+    "name": "@by/dtos",
+    "exports":{
+        ".":"./sign_in.dto.ts"
+    }
+}

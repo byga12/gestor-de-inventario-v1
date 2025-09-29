@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "bruno_endpoints_tests",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { compare } from 'bcrypt';
-import { SignInDto } from './dto/sign_in.dto';
+import { SignInDto } from '@by/dtos';
 @Injectable()
 export class AuthService {
   constructor(
@@ -22,6 +22,6 @@ export class AuthService {
       role: user.role,
     };
     const token = await this.jwtService.signAsync(payload);
-    return token;
+    return { token };
   }
 }

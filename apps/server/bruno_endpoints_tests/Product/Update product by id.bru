@@ -1,0 +1,25 @@
+meta {
+  name: Update product by id
+  type: http
+  seq: 4
+}
+
+patch {
+  url: http://localhost:3000/product/c85d0e1e-9d71-4a01-a04d-21f1c3031de9
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "name":"Aceite de coco 2"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
