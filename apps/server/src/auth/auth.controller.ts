@@ -1,6 +1,15 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto } from '@by/types';
+import { AuthGuard } from './auth.guard';
 
 @Controller()
 export class AuthController {
@@ -10,5 +19,13 @@ export class AuthController {
   @Post('login')
   async signIn(@Body() signInDto: SignInDto) {
     return await this.authService.signIn(signInDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('revalidate')
+  revalidate() {
+    return {
+      isValid: true,
+    };
   }
 }

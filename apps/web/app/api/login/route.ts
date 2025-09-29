@@ -27,8 +27,7 @@ export async function POST(request: Request) {
     }
 
     // 2. Almacenamiento seguro del JWT en una cookie HTTP-Only
-
-    const token = data.accessToken;
+    const token = data.token;
 
     (await cookies()).set('auth_token', token, {
       httpOnly: true, // CLAVE: No accesible por JavaScript del cliente

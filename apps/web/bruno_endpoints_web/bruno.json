@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "bruno_endpoints_tests",
+  "name": "bruno_endpoints_web",
   "type": "collection",
   "ignore": [
     "node_modules",
