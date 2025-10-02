@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { compare } from 'bcrypt';
-import { SignInDto } from '@by/types';
+import { JwtPayload, SignInDto } from '@by/types';
 
 @Injectable()
 export class AuthService {
@@ -17,10 +17,15 @@ export class AuthService {
     if (!(await compare(password, user.password))) {
       throw new UnauthorizedException('Contraseña incorrecta');
     }
-    const payload = {
+    const payload: JwtPayload = {
       iss: 'localtest',
       sub: user.id,
-      role: user.role,
+      user: {
+        name: user.name,
+        id: user.id,
+        username: user.username,
+        role: user.role,
+      },
     };
     const token = await this.jwtService.signAsync(payload);
     return { token };

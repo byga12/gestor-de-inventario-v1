@@ -4,12 +4,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-export enum UserRole {
-  ADMIN = 'admin',
-  SELLER = 'seller',
-}
-
+import { UserRole } from '@by/types';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')

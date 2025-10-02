@@ -1,4 +1,4 @@
-import { UserRole } from 'src/user/entities/user.entity';
+import { UserRole } from '@by/types';
 
 export interface JwtPayload {
   iss: string;
