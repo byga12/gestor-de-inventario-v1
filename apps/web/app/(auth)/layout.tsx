@@ -1,5 +1,5 @@
 // app/layout.js (o .tsx) - ESTE ES UN SERVER COMPONENT POR DEFECTO
-import { getSession } from "@/lib/data_access_layer"; // 👈 Importa tu función DAL
+import { getSession } from "@/lib/data-access-layer"; // 👈 Importa tu función DAL
 import { AppLayout } from "@/components/ui/layout/app-layout";
 import { SessionProvider } from "@/components/ui/SessionProvider";
 import React from "react";

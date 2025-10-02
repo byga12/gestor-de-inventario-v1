@@ -11,9 +11,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
 import { AdminGuard } from 'src/auth/admin.guard';
+import { CreateProductDto, UpdateProductDto } from '@by/types';
 
 @UseGuards(AdminGuard)
 @Controller('product')
