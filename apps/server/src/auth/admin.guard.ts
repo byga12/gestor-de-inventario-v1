@@ -6,8 +6,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { JwtPayload } from './interfaces/jwt_payload';
-import { UserRole } from '@by/types';
+import { UserRole, JwtPayload } from '@by/types';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -23,7 +22,8 @@ export class AdminGuard implements CanActivate {
       const payload: JwtPayload = await this.jwtService.verifyAsync(token, {
         secret: process.env.JWT_SECRET,
       });
-      if (payload.role != UserRole.ADMIN) {
+
+      if (payload.user.role != UserRole.ADMIN) {
         throw new UnauthorizedException();
       }
     } catch (e) {

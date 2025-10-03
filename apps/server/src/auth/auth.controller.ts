@@ -10,6 +10,7 @@ import {
 import { AuthService } from './auth.service';
 import { SignInDto } from '@by/types';
 import { AuthGuard } from './auth.guard';
+import type { Response } from 'express';
 
 @Controller()
 export class AuthController {
@@ -18,7 +19,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async signIn(@Body() signInDto: SignInDto) {
-    return await this.authService.signIn(signInDto);
+    const token = await this.authService.signIn(signInDto);
+    return { token };
   }
 
   @UseGuards(AuthGuard)

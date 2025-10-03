@@ -31,17 +31,17 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   const adminMenuItems = [
     { href: "/dashboard", label: "Inicio", icon: Home },
-    { href: "/usuarios", label: "Usuarios", icon: Users },
-    { href: "/productos", label: "Productos", icon: Package },
-    { href: "/ventas", label: "Ventas", icon: Receipt },
-    { href: "/carrito", label: "Carrito", icon: ShoppingCart },
+    { href: "/users", label: "Usuarios", icon: Users },
+    { href: "/products", label: "Productos", icon: Package },
+    { href: "/sales", label: "Ventas", icon: Receipt },
+    { href: "/cart", label: "Carrito", icon: ShoppingCart },
   ]
 
   const sellerMenuItems = [
     { href: "/dashboard", label: "Inicio", icon: Home },
-    { href: "/productos", label: "Productos", icon: Package },
-    { href: "/ventas", label: "Ventas", icon: Receipt },
-    { href: "/carrito", label: "Carrito", icon: ShoppingCart },
+    { href: "/products", label: "Productos", icon: Package },
+    { href: "/sales", label: "Ventas", icon: Receipt },
+    { href: "/cart", label: "Carrito", icon: ShoppingCart },
   ]
 
   const menuItems = user.role === "admin" ? adminMenuItems : sellerMenuItems
