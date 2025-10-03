@@ -1,4 +1,4 @@
-import { UserRole } from './userRole';
+import { UserRole } from '../user/userRole';
 
 export interface UserPayload {
   name: string;
