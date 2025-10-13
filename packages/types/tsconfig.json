@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "es6", // 👈 O al menos "ES2020" o superior
+    "module": "commonjs", // 👈 O "NodeNext" si usas ES Modules
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "./dist",

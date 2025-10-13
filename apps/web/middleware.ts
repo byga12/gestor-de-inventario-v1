@@ -5,7 +5,7 @@ const PROTECTED_ROUTES = [
   '/dashboard',
   '/profile',
   '/users',
-  'products',
+  '/products',
   '/cart',
 ];
 const LOGIN_ROUTE = '/login';

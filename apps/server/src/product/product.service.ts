@@ -28,9 +28,8 @@ export class ProductService {
     const product: Product = await this.productRepository.findOneByOrFail({
       id,
     });
-    return await this.productRepository.update(product, {
-      ...updateProductDto,
-    });
+    const newProduct = { ...product, ...updateProductDto };
+    return await this.productRepository.save(newProduct);
   }
 
   async deleteProductById(id: string) {

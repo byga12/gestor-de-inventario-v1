@@ -1,3 +1,4 @@
+'use server';
 import { cookies } from 'next/headers';
 const NEST_URL = 'http://localhost:3000';
 // 👈 Función helper centralizada para manejar la autenticación

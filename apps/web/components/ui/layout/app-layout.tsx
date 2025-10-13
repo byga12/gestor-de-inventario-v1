@@ -1,84 +1,95 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { useState } from "react"
-import { useSessionContext } from "@/lib/session-provider"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import type React from 'react';
+import { useState } from 'react';
+import { useSessionContext } from '@/lib/session-provider';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Home, Users, Package, ShoppingCart, Receipt, Menu, User, LogOut } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+} from '@/components/ui/dropdown-menu';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Home,
+  Users,
+  Package,
+  ShoppingCart,
+  Receipt,
+  Menu,
+  User,
+  LogOut,
+} from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 interface AppLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 export function AppLayout({ children }: AppLayoutProps) {
-  const user = useSessionContext()
-  const pathname = usePathname()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const user = useSessionContext();
+  const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const logout = () =>{}
-  if (!user) return null
+  const logout = () => {};
+  if (!user) return null;
 
   const adminMenuItems = [
-    { href: "/dashboard", label: "Inicio", icon: Home },
-    { href: "/users", label: "Usuarios", icon: Users },
-    { href: "/products", label: "Productos", icon: Package },
-    { href: "/sales", label: "Ventas", icon: Receipt },
-    { href: "/cart", label: "Carrito", icon: ShoppingCart },
-  ]
+    { href: '/dashboard', label: 'Inicio', icon: Home },
+    { href: '/users', label: 'Usuarios', icon: Users },
+    { href: '/products', label: 'Productos', icon: Package },
+    // { href: "/sales", label: "Ventas", icon: Receipt },
+    // { href: "/cart", label: "Carrito", icon: ShoppingCart },
+  ];
 
   const sellerMenuItems = [
-    { href: "/dashboard", label: "Inicio", icon: Home },
-    { href: "/products", label: "Productos", icon: Package },
-    { href: "/sales", label: "Ventas", icon: Receipt },
-    { href: "/cart", label: "Carrito", icon: ShoppingCart },
-  ]
+    { href: '/dashboard', label: 'Inicio', icon: Home },
+    { href: '/products', label: 'Productos', icon: Package },
+    // { href: "/sales", label: "Ventas", icon: Receipt },
+    // { href: "/cart", label: "Carrito", icon: ShoppingCart },
+  ];
 
-  const menuItems = user.role === "admin" ? adminMenuItems : sellerMenuItems
+  const menuItems = user.role === 'admin' ? adminMenuItems : sellerMenuItems;
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
       <div className="p-6 border-b border-border">
         <h2 className="text-lg font-semibold">Sistema de Inventario</h2>
-        <p className="text-sm text-muted-foreground">{user.role === "admin" ? "Administrador" : "Vendedor"}</p>
+        <p className="text-sm text-muted-foreground">
+          {user.role === 'admin' ? 'Administrador' : 'Vendedor'}
+        </p>
       </div>
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
           {menuItems.map((item) => {
-            const Icon = item.icon
-            const isActive = pathname === item.href
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                    'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent",
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent',
                   )}
                 >
                   <Icon className="h-4 w-4" />
                   {item.label}
                 </Link>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
     </div>
-  )
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -132,7 +143,10 @@ export function AppLayout({ children }: AppLayoutProps) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={logout} className="flex items-center gap-2 text-destructive">
+              <DropdownMenuItem
+                onClick={logout}
+                className="flex items-center gap-2 text-destructive"
+              >
                 <LogOut className="h-4 w-4" />
                 Cerrar Sesión
               </DropdownMenuItem>
@@ -153,5 +167,5 @@ export function AppLayout({ children }: AppLayoutProps) {
         </main>
       </div>
     </div>
-  )
+  );
 }
