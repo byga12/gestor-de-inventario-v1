@@ -9,6 +9,15 @@
                 ".next/**",
                 "!.next/cache/**",
                 "dist/**"
+            ],
+            "env": [
+                "DB_HOST",
+                "DB_PORT",
+                "POSTGRESQL_DB_NAME",
+                "POSTGRESQL_USERNAME",
+                "POSTGRESQL_PASSWORD",
+                "JWT_SECRET",
+                "PORT"
             ]
         },
         "check-types": {
