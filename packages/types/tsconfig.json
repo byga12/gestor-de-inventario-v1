@@ -5,8 +5,16 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
     "strict": false
   },
-  "include": ["src"],
-  "exclude": ["node_modules","dist",".turbo"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".turbo"
+  ]
 }

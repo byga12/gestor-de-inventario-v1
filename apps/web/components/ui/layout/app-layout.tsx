@@ -17,10 +17,7 @@ import {
   Home,
   Users,
   Package,
-  ShoppingCart,
-  Receipt,
   Menu,
-  User,
   LogOut,
 } from 'lucide-react';
 import Link from 'next/link';

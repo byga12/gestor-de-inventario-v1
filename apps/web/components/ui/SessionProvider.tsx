@@ -1,7 +1,7 @@
 // components/SessionProvider.tsx
 'use client'; // 👈 Es crucial marcarlo como Client Component
 
-import { ReactNode, useMemo } from 'react';
+import { ReactNode } from 'react';
 import { SessionContext } from '@/lib/session-provider';
 import { UserPayload } from '@by/types';
 interface SessionProviderProps {

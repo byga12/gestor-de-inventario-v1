@@ -1,6 +1,6 @@
 import 'server-only';
 import { cookies } from 'next/headers';
-import { decode, verify } from 'jsonwebtoken';
+import { decode } from 'jsonwebtoken';
 import { JwtPayload } from '@by/types';
 export const getSession = async (): Promise<null | JwtPayload> => {
   // TODO : ademas de desencriptar el payload, deberia verificar la signature
