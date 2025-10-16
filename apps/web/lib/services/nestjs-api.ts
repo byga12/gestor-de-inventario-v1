@@ -29,7 +29,13 @@ async function authenticatedFetch(
 }
 
 // Product
-import { CreateProductDto, Product, UpdateProductDto } from '@by/types';
+import {
+  CreateProductDto,
+  Product,
+  UpdateProductDto,
+  User,
+  CreateUserDto,
+} from '@by/types';
 export const addProduct = async (createProductDto: CreateProductDto) => {
   await authenticatedFetch('product', {
     method: 'POST',
@@ -73,3 +79,29 @@ export const deleteProductById = async (id: string) => {
 // Sale
 
 // User
+export const getUsers = async (): Promise<User[] | []> => {
+  const req = await authenticatedFetch('user', {
+    method: 'GET',
+  });
+
+  if (req.ok) {
+    return await req.json();
+  } else {
+    return [];
+  }
+};
+
+export const addUser = async (createUserDto: CreateUserDto) => {
+  const req = await authenticatedFetch('user', {
+    method: 'POST',
+    body: JSON.stringify(createUserDto),
+  });
+  const res = await req.json();
+  return res;
+};
+
+export const deleteUserById = async (id: string) => {
+  await authenticatedFetch(`user/${id}`, {
+    method: 'DELETE',
+  });
+};

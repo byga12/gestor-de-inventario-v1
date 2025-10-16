@@ -15,6 +15,7 @@ export class UserService {
   async getUsers(): Promise<User[]> {
     return await this.userRepository.find({
       select: {
+        id: true,
         username: true,
         name: true,
         surname: true,

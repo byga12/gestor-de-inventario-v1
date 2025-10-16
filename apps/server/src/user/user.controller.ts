@@ -14,25 +14,25 @@ import { CreateUserDto } from './dto/create_user.dto';
 import { AdminGuard } from 'src/auth/admin.guard';
 
 @UseGuards(AdminGuard)
-@Controller()
+@Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   // @UseGuards(AdminGuard)
-  @Get('/user')
+  @Get()
   async getAllUsers() {
     return await this.userService.getUsers();
   }
 
   // @UseGuards(AdminGuard)
-  @Post('/user')
+  @Post()
   @UsePipes(new ValidationPipe())
   async addUser(@Body() createUserDto: CreateUserDto) {
     return await this.userService.addUser(createUserDto);
   }
 
   // @UseGuards(AdminGuard)
-  @Delete('/user/:id')
+  @Delete(':id')
   async deleteUser(@Param('id') id: string) {
     return await this.userService.deleteUser(id);
   }
