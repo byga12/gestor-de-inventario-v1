@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProductService } from 'src/product/product.service';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class DashboardService {
