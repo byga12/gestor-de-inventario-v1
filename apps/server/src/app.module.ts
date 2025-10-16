@@ -10,6 +10,7 @@ import { Product } from './product/entities/product.entity';
 import { SaleModule } from './sale/sale.module';
 import { Sale } from './sale/entities/sale.entity';
 import { SaleItem } from './sale/entities/sale_item.entity';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { SaleItem } from './sale/entities/sale_item.entity';
     UserModule,
     ProductModule,
     SaleModule,
+    DashboardModule,
   ],
   controllers: [],
   providers: [],

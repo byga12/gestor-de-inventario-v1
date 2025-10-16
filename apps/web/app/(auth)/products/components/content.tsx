@@ -1,6 +1,6 @@
 'use client';
 import { Product } from '@by/types';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Plus, Search, Trash, SquarePen } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import {
@@ -58,6 +58,17 @@ export default function ProductsPage({ products }: ProductsPageProps) {
     state: false,
     productId: '',
   });
+
+  const filteredProducts = useMemo(() => {
+    if (!searchTerm) return products;
+
+    return products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      // user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      // user.surname.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }, [products, searchTerm]);
 
   const {
     register: registerAdd,
@@ -311,7 +322,7 @@ export default function ProductsPage({ products }: ProductsPageProps) {
 
       {/* Products Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Card key={product.id}>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">

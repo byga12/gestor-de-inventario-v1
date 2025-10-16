@@ -38,4 +38,8 @@ export class ProductService {
     });
     return await this.productRepository.softRemove(product);
   }
+
+  async countAll() {
+    return await this.productRepository.count();
+  }
 }

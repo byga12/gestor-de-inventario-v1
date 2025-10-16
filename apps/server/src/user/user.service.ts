@@ -43,4 +43,12 @@ export class UserService {
     const user: User = await this.userRepository.findOneByOrFail({ id });
     return await this.userRepository.softRemove(user);
   }
+
+  async countActive() {
+    return await this.userRepository.count();
+  }
+
+  async countAll() {
+    return await this.userRepository.count({ withDeleted: true });
+  }
 }

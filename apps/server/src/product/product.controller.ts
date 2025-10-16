@@ -11,10 +11,10 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { AdminGuard } from 'src/auth/admin.guard';
 import { CreateProductDto, UpdateProductDto } from '@by/types';
+import { AuthGuard } from 'src/auth/auth.guard';
 
-@UseGuards(AdminGuard)
+@UseGuards(AuthGuard)
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}

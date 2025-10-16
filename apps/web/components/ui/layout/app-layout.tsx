@@ -24,7 +24,7 @@ import {
   LogOut,
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 interface AppLayoutProps {
@@ -34,8 +34,11 @@ export function AppLayout({ children }: AppLayoutProps) {
   const user = useSessionContext();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const logout = () => {};
+  const router = useRouter();
+  const logout = async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    router.push('/login');
+  };
   if (!user) return null;
 
   const adminMenuItems = [
@@ -136,13 +139,13 @@ export function AppLayout({ children }: AppLayoutProps) {
                 </div>
               </div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link href="/perfil" className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   Mi Perfil
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator /> */}
               <DropdownMenuItem
                 onClick={logout}
                 className="flex items-center gap-2 text-destructive"

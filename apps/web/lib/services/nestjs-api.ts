@@ -28,6 +28,13 @@ async function authenticatedFetch(
   return response;
 }
 
+// Dashboard
+export const getSummary = async () => {
+  const req = await authenticatedFetch('dashboard/summary');
+  const res = await req.json();
+  return res;
+};
+
 // Product
 import {
   CreateProductDto,
@@ -37,10 +44,12 @@ import {
   CreateUserDto,
 } from '@by/types';
 export const addProduct = async (createProductDto: CreateProductDto) => {
-  await authenticatedFetch('product', {
+  const req = await authenticatedFetch('product', {
     method: 'POST',
     body: JSON.stringify(createProductDto),
   });
+  const res = await req.json();
+  return res;
 };
 
 export const getProducts = async (): Promise<Product[] | []> => {
@@ -56,25 +65,31 @@ export const getProducts = async (): Promise<Product[] | []> => {
 };
 
 export const getProductById = async (id: string) => {
-  await authenticatedFetch(`product/${id}`, {
+  const req = await authenticatedFetch(`product/${id}`, {
     method: 'GET',
   });
+  const res = await req.json();
+  return res;
 };
 
 export const updateProductById = async (
   id: string,
   updateProductDto: UpdateProductDto,
 ) => {
-  await authenticatedFetch(`product/${id}`, {
+  const req = await authenticatedFetch(`product/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(updateProductDto),
   });
+  const res = await req.json();
+  return res;
 };
 
 export const deleteProductById = async (id: string) => {
-  await authenticatedFetch(`product/${id}`, {
+  const req = await authenticatedFetch(`product/${id}`, {
     method: 'DELETE',
   });
+  const res = await req.json();
+  return res;
 };
 // Sale
 
@@ -101,7 +116,9 @@ export const addUser = async (createUserDto: CreateUserDto) => {
 };
 
 export const deleteUserById = async (id: string) => {
-  await authenticatedFetch(`user/${id}`, {
+  const req = await authenticatedFetch(`user/${id}`, {
     method: 'DELETE',
   });
+  const res = req.json();
+  return res;
 };
