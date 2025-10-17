@@ -24,3 +24,8 @@ Cualquier sugerencia es bienvenida!
 - shadcnUI
 - React-hook-form Zod para manejar formularios en el front
 - jsonwebtoken para gestionar JWT
+
+## Deploy
+- Next.js front: Vercel
+- Nest.js back: Vercel
+- PostgreSQL DB: Railway

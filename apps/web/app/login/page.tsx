@@ -9,43 +9,31 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2 } from "lucide-react"
 import { SignInDto } from "@by/types"
 export default function LoginPage() {
+  const router = useRouter()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const login = async (credentials:SignInDto): Promise<boolean> => {
-    const req = await fetch("/api/login",{
-        body:JSON.stringify({
-            username:credentials.username,
-            password:credentials.password
-        }),
-        method:'POST'
-    })
-    if(req.ok){
-        return true
-    } else {
-        return false
-    }
-    
-  }
-  const router = useRouter()
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError("")
     setIsLoading(true)
-    try {
-        const success = await login({username,password})
-      if (success) {
-        router.push("/dashboard")
-      } else {
-        setError("Usuario o contraseña incorrectos")
-      }
-    } catch (err) {
-      setError("Error al iniciar sesión")
-    } finally {
-      setIsLoading(false)
+    const req = await fetch("/api/login",{
+      body:JSON.stringify({
+        username,password
+      }),
+      method:'POST'
+    })
+    const res = await req.json()
+    
+    if(res.status !== 200){
+      setError("Usuario y/o contraseña incorrectos")
+    } else {
+      router.push('/dashboard')
     }
+    setIsLoading(false)  
   }
 
   return (
