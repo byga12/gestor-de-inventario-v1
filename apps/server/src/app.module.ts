@@ -16,12 +16,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: false }),
     TypeOrmModule.forRoot({
+      url: process.env.DATABASE_PUBLIC_URL,
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT ?? '5432', 10),
-      username: process.env.POSTGRESQL_USERNAME,
-      password: process.env.POSTGRESQL_PASSWORD,
-      database: process.env.POSTGRESQL_DB_NAME,
+      host: process.env.PGHOST,
+      port: parseInt(process.env.PGPORT ?? '5432', 10),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: [User, Product, Sale, SaleItem],
       synchronize: true,
     }),
