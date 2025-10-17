@@ -99,10 +99,10 @@ export default function LoginPage() {
             <p className="text-sm text-muted-foreground mb-2">Usuarios de prueba:</p>
             <div className="text-xs space-y-1">
               <p>
-                <strong>Admin:</strong> admin / 123456
+                <strong>Admin:</strong> admin / 1234567890
               </p>
               <p>
-                <strong>Vendedor:</strong> vendedor1 / 123456
+                <strong>Vendedor:</strong> vendedor1 / 1234567890
               </p>
             </div>
           </div>
