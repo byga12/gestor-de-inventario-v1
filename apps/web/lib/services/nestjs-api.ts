@@ -1,6 +1,7 @@
 'use server';
 import { cookies } from 'next/headers';
-const NEST_URL = 'http://localhost:3000';
+
+const NEST_JS_API_URL=process.env.NEST_JS_API_URL
 // 👈 Función helper centralizada para manejar la autenticación
 async function authenticatedFetch(
   endpoint: string,
@@ -19,7 +20,7 @@ async function authenticatedFetch(
   authHeaders.set('Authorization', `Bearer ${token}`);
   authHeaders.set('Content-Type', 'application/json');
 
-  const url = `${NEST_URL}/${endpoint}`;
+  const url = `${NEST_JS_API_URL}/${endpoint}`;
 
   const response = await fetch(url, {
     ...options,

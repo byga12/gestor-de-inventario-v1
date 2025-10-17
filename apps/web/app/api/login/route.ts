@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 // URL base de tu backend Nest.js (ej: http://localhost:3000)
-const NEST_JS_API_URL = 'http://localhost:3000';
+const NEST_JS_API_URL = process.env.NEST_JS_API_URL
 
 export async function POST(request: Request) {
   try {

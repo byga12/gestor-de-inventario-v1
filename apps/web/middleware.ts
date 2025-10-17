@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { MiddlewareConfig, NextRequest } from 'next/server';
+const NEST_JS_API_URL = process.env.NEST_JS_API_URL
 
 const PROTECTED_ROUTES = [
   '/dashboard',
@@ -21,7 +22,7 @@ export async function middleware(request: NextRequest) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const req = await fetch('http://localhost:3000/revalidate', {
+      const req = await fetch(`${NEST_JS_API_URL}/revalidate`, {
         method: 'POST',
         headers,
       });
