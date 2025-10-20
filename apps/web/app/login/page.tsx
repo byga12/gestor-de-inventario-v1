@@ -27,6 +27,7 @@ export default function LoginPage() {
       method:'POST'
     })
     const res = await req.json()
+    console.log(res);
     
     if(res.status !== 200){
       setError("Usuario y/o contraseña incorrectos")

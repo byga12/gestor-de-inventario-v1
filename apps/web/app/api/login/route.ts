@@ -14,7 +14,8 @@ export async function POST(request: Request) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     });
-
+    console.log('Server BFF:', res);
+    
     if (!res.ok) {
       return Response.json({status:500, error:'Ocurrió un error'})
     }

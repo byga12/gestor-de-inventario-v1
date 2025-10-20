@@ -18,6 +18,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   } else {
     const token = request.cookies.get('auth_token')?.value;
+    console.log('Middleware BFF', token);
+    
     if (token) {
       const headers = {
         Authorization: `Bearer ${token}`,
