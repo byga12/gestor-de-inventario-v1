@@ -6,6 +6,7 @@ const NEST_JS_API_URL = process.env.NEST_JS_API_URL
 
 export async function POST(request: Request) {
   try {
+    (await cookies()).delete('auth_token')
     const { username, password } = await request.json()
     
     // 1. Llamada al endpoint de Nest.js
