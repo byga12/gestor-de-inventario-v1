@@ -13,12 +13,14 @@ const LOGIN_ROUTE = '/login';
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  console.log(path,"token:", !!request.cookies.get('auth_token')?.value);
+  
   const isProtectedRoute = PROTECTED_ROUTES.includes(path);
   if (!isProtectedRoute) {
     return NextResponse.next();
   } else {
     const token = request.cookies.get('auth_token')?.value;
-    console.log('Middleware BFF', token);
+    console.log('Middleware BFF: Ruta protegida; token:', !!token);
     
     if (token) {
       const headers = {
