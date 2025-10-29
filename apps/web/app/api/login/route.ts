@@ -6,6 +6,10 @@ const NEST_JS_API_URL = process.env.NEST_JS_API_URL
 
 export async function POST(request: Request) {
   try {
+    const cookiesData = await cookies()
+    const auth_token = cookiesData.get('auth_token')
+    console.log('/api/login BORRO Token viejo:', auth_token);
+    
     (await cookies()).delete('auth_token')
     const { username, password } = await request.json()
     
@@ -15,8 +19,6 @@ export async function POST(request: Request) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     });
-    console.log('Server BFF:', res.status);
-    
     if (!res.ok) {
       return Response.json({status:500, error:'Ocurrió un error'})
     }
@@ -24,7 +26,7 @@ export async function POST(request: Request) {
     // 2. Almacenamiento seguro del JWT en una cookie HTTP-Only
     const data = await res.json()
     const token = data.token;
-
+    console.log('/api/login SETEO Token nuevo:', auth_token);
     (await cookies()).set('auth_token', token, {
       httpOnly: true, // CLAVE: No accesible por JavaScript del cliente
       secure: process.env.NODE_ENV === 'production', // Solo sobre HTTPS en producción
