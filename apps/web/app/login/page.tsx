@@ -32,6 +32,8 @@ export default function LoginPage() {
     if(res.status !== 200){
       setError("Usuario y/o contraseña incorrectos")
     } else {
+      console.log('Deberia hacer un push');
+      
       router.push('/dashboard')
     }
     setIsLoading(false)  
