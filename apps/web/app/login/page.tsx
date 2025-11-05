@@ -33,8 +33,10 @@ export default function LoginPage() {
       setError("Usuario y/o contraseña incorrectos")
     } else {
       console.log('Deberia hacer un push');
-      
-      router.push('/dashboard')
+      setTimeout(()=>{
+        router.push('/dashboard')
+
+      },3000)
     }
     setIsLoading(false)  
   }
