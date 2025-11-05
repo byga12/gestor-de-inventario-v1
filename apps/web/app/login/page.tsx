@@ -35,10 +35,9 @@ export default function LoginPage() {
       console.log('Deberia hacer un push');
       setTimeout(()=>{
         router.push('/dashboard')
-
+        setIsLoading(false)  
       },3000)
     }
-    setIsLoading(false)  
   }
 
   return (
