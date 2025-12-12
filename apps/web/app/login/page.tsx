@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2 } from "lucide-react"
 import { SignInDto } from "@by/types"
+import { revalidatePath } from "next/cache"
 export default function LoginPage() {
   const router = useRouter()
   const [username, setUsername] = useState("")
@@ -33,9 +34,9 @@ export default function LoginPage() {
       setError("Usuario y/o contraseña incorrectos")
     } else {
       console.log('Deberia hacer un push');
+      revalidatePath('/dashboard')
       setTimeout(()=>{
-        // router.push('/dashboard')
-        router.prefetch('/dashboard')
+        router.push('/dashboard')
         setIsLoading(false)  
       },3000)
     }
