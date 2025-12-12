@@ -32,6 +32,7 @@ export async function middleware(request: NextRequest) {
       if (req.ok) {
         const res = await req.json();
         if (res.isValid) {
+          console.log("Deberia hacer un push (middleware)")
           return NextResponse.next();
         }
       }
