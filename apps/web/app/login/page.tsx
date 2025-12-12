@@ -34,7 +34,8 @@ export default function LoginPage() {
     } else {
       console.log('Deberia hacer un push');
       setTimeout(()=>{
-        router.push('/dashboard')
+        // router.push('/dashboard')
+        router.prefetch('/dashboard')
         setIsLoading(false)  
       },3000)
     }
